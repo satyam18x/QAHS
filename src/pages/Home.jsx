@@ -4,9 +4,9 @@ import { ChevronRight, Phone, CheckCircle, Award, Users, Globe } from 'lucide-re
 
 // Using generated image paths
 const IMAGES = {
-  hero: '/src/assets/images/hero_doctor_admin.png',
-  setup: '/src/assets/images/hospital_setup_consultancy.png',
-  international: '/src/assets/images/international_patient_care.png'
+  hero: '/images/hero_doctor_admin.png',
+  setup: '/images/hospital_setup_consultancy.png',
+  international: '/images/international_patient_care.png'
 };
 
 const Home = () => {

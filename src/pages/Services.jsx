@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 import { ChevronRight, Check } from 'lucide-react';
 
 // Using generated image paths
 const IMAGES = {
-  setup: '/src/assets/images/hospital_setup_consultancy.png',
+  setup: '/images/hospital_setup_consultancy.png',
 };
 
 const Services = () => {
@@ -42,7 +43,7 @@ const Services = () => {
       />
 
       <div className="service-tabs sticky-tabs">
-        <div className="container tab-container">
+        <div className="container tab-container desktop-tabs">
           {tabs.map(tab => (
             <button
               key={tab.id}
@@ -52,6 +53,11 @@ const Services = () => {
               {tab.label}
             </button>
           ))}
+        </div>
+        <div className="container tab-container mobile-tabs">
+          <Link to="/hospital-setup" className="tab-btn">Hospital Setup</Link>
+          <Link to="/compliance" className="tab-btn">Licensing & Compliance</Link>
+          <Link to="/international" className="tab-btn">International</Link>
         </div>
       </div>
 
@@ -232,6 +238,8 @@ const Services = () => {
         .tab-btn:hover { color: var(--primary); }
         .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
 
+        .mobile-tabs { display: none; }
+
         .service-block { padding: 120px 0; }
         .service-block.bg-light { background: var(--bg-light); }
         .service-block.bg-white { background: white; }
@@ -312,11 +320,27 @@ const Services = () => {
         }
 
         @media (max-width: 767px) {
+          .desktop-tabs { display: none; }
+          .mobile-tabs { 
+            display: flex; 
+            width: 100%;
+          }
+          .mobile-tabs .tab-btn {
+            flex: 1;
+            padding: 12px 4px;
+            font-size: 13px;
+            white-space: normal;
+            text-align: center;
+            line-height: 1.3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
           .service-block { padding: 80px 0; }
           .s-content h3 { font-size: 32px; }
           .lead { font-size: 18px; }
           .equipment-grid { grid-template-columns: 1fr; }
-          .tab-container { justify-content: flex-start; }
+          .tab-container { justify-content: space-between; }
         }
       ` }} />
     </div>

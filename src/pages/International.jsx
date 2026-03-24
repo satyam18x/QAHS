@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 import { Plane, Building, Clock, Languages, ChevronRight } from 'lucide-react';
 
@@ -10,6 +11,10 @@ const International = () => {
         subtitle="World-Class Healthcare Coordination for Global Patients" 
         breadcrumb="International"
       />
+
+      <div className="container mobile-back-btn">
+        <Link to="/services">← Back to All Services</Link>
+      </div>
 
       {/* F2. Why India */}
       <section className="why-india bg-white">
@@ -37,6 +42,7 @@ const International = () => {
             </div>
           </div>
           <div className="india-text">
+            <img src="/images/international_patient_care.png" alt="International Patient Care Delivery" style={{width: '100%', borderRadius: '12px', marginBottom: '30px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', objectFit: 'cover'}} />
             <p className="lead">
               India has emerged as one of the world's top destinations for affordable, high-quality medical care. Procedures that cost $30,000+ in the US or UK can be done here with the same clinical quality at a fraction of the cost.
             </p>
@@ -168,6 +174,23 @@ const International = () => {
          }
          @media (max-width: 767px) {
             .country-grid { grid-template-columns: 1fr; }
+            .journey-flow {
+               flex-direction: column;
+               align-items: center;
+               gap: 40px;
+               overflow-x: visible;
+            }
+            .journey-step { width: 100%; max-width: 250px; }
+            .journey-flow::after {
+               display: block;
+               top: 40px;
+               bottom: 40px;
+               left: 50%;
+               right: auto;
+               width: 2px;
+               height: auto;
+               transform: translateX(-50%);
+            }
          }
       ` }} />
     </div>

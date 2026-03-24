@@ -38,8 +38,8 @@ const Navbar = () => {
       <nav className={`main-nav ${isSticky ? 'sticky' : ''}`}>
         <div className="container nav-content">
           <Link to="/" className="logo">
-            <img src="/src/assets/images/qhas-logo.png" alt="QHAS Logo" className="logo-img" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
-            <span className="logo-text" style={{display: 'none'}}><img src="/src/assets/images/qhas-logo.png" className="logo-img" /></span>
+            <img src="/images/qhas-logo.png" alt="QHAS Logo" className="logo-img" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
+            <span className="logo-text" style={{display: 'none'}}><img src="/images/qhas-logo.png" className="logo-img" /></span>
           </Link>
 
           <div className="nav-links">
@@ -231,8 +231,8 @@ const Navbar = () => {
         .mobile-toggle { display: none; background: none; border: none; color: var(--primary); cursor: pointer; }
 
         .mobile-drawer {
-          position: fixed;
-          top: 72px;
+          position: absolute;
+          top: 100%;
           left: 0;
           right: 0;
           background: white;

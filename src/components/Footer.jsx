@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Column 1 - Brand */}
           <div className="footer-col brand-col">
             <div className="footer-logo-wrap" style={{ marginBottom: '16px' }}>
-              <img src="/src/assets/images/qhas-logo.png" alt="QHAS Logo" style={{ maxWidth: '180px', maxHeight: '60px', objectFit: 'contain' }} className="footer-logo-img" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
+              <img src="/images/qhas-logo.png" alt="QHAS Logo" style={{ maxWidth: '180px', maxHeight: '60px', objectFit: 'contain' }} className="footer-logo-img" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
               <h2 className="footer-logo" style={{ display: 'none', margin: 0 }}>QHAS</h2>
             </div>
             <p className="tagline">Your Hospital Admin & Compliance Partner</p>
