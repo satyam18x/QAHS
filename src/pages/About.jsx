@@ -17,9 +17,6 @@ const About = () => {
           <div className="who-image">
             <div className="image-wrap about-img-wrap">
               <img src="/images/team.jpg" alt="QHAS Doctor Team" className="about-team-img" />
-              <div className="badge">
-                <span className="badge-dot"></span>Est. in Jabalpur, M.P.
-              </div>
             </div>
           </div>
           <div className="who-text">
@@ -87,22 +84,6 @@ const About = () => {
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
         .about-img-wrap { position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
         .about-team-img { width: 100%; height: auto; display: block; object-fit: contain; }
-        .about-img-wrap .badge {
-          position: absolute;
-          top: 30px;
-          left: 30px;
-          background: white;
-          padding: 10px 20px;
-          border-radius: 30px;
-          font-weight: 700;
-          color: var(--primary);
-          box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          z-index: 10;
-        }
-        .badge-dot { width: 10px; height: 10px; background: var(--accent-green); border-radius: 50%; display: inline-block; }
 
         .who-text p { margin-bottom: 20px; color: var(--text-muted); font-size: 17px; }
         .highlight-box {
