@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 import { Plane, Building, Clock, Languages, ChevronRight } from 'lucide-react';
 
@@ -10,6 +11,10 @@ const International = () => {
         subtitle="World-Class Healthcare Coordination for Global Patients" 
         breadcrumb="International"
       />
+
+      <div className="container mobile-back-btn">
+        <Link to="/services">← Back to All Services</Link>
+      </div>
 
       {/* F2. Why India */}
       <section className="why-india bg-white">

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 import { CheckCircle } from 'lucide-react';
 
@@ -10,6 +11,10 @@ const HospitalSetup = () => {
         subtitle="Turnkey hospital setup consultancy from planning to operations" 
         breadcrumb="Hospital Setup"
       />
+
+      <div className="container mobile-back-btn">
+        <Link to="/services">← Back to All Services</Link>
+      </div>
 
       {/* G2. Intro */}
       <section className="setup-intro bg-white">
