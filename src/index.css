@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Brand Identity - Colors (Strict) */
+  --primary:       #1A7EB5;   /* Main Teal-Blue */
+  --primary-dark:  #0E5A8A;   /* Darker Blue */
+  --accent-green:  #2E8B57;   /* Medical Green */
+  --accent-light:  #34A85A;   /* Lighter Green */
+  --bg-light:      #F5F8FC;   /* Off-white Page Background */
+  --bg-card:       #EBF5FB;   /* Light Blue Card Background */
+  --bg-green-soft: #EAF7EE;   /* Soft Green Section Background */
+  --text-dark:     #1A1A2E;   /* Primary Body Text */
+  --text-muted:    #6C757D;   /* Secondary / Captions */
+  --white:         #FFFFFF;
+  --border:        #D0E8F5;   /* Subtle card borders */
+  --shadow:        rgba(26, 126, 181, 0.12);  /* Blue-tinted card shadows */
+
+  /* Gradients */
+  --hero-gradient:  linear-gradient(135deg, #0E5A8A 0%, #1A7EB5 50%, #2196A6 100%);
+  --cta-gradient:   linear-gradient(135deg, #0E5A8A 0%, #1A5A8A 100%);
+  --green-gradient: linear-gradient(135deg, #1A7EB5 0%, #2E8B57 100%);
+
+  /* Typography */
+  --font-heading:  'DM Sans', sans-serif;
+  --font-body:     'Source Sans 3', sans-serif;
+  --font-accent:   'DM Mono', monospace;
+
+  /* Spacing & Layout */
+  --section-padding:    100px 0;
+  --container-max:      1180px;
+  --container-padding:  0 24px;
+  --card-radius:        16px;
+  --button-radius:      8px;
+  --small-radius:       6px;
+  --grid-gap:           28px;
+
+  /* Transitions */
+  --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+h1 { font-size: 56px; font-weight: 800; }
+h2 { font-size: 40px; font-weight: 700; }
+h3 { font-size: 28px; font-weight: 700; }
+h4 { font-size: 20px; font-weight: 600; }
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--container-padding);
+}
+
+section {
+  padding: var(--section-padding);
+}
+
+/* Global Component Styles */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  border-radius: var(--button-radius);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--shadow);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.btn-ghost {
+  background-color: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.6);
+  color: var(--white);
+}
+
+.btn-ghost:hover {
+  background-color: var(--white);
+  color: var(--primary-dark);
+}
+
+.card {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  padding: 28px;
+  box-shadow: 0 4px 20px var(--shadow);
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(26,126,181,0.18);
+}
+
+.section-label {
+  display: inline-block;
+  background-color: rgba(26,126,181,0.1);
+  color: var(--primary);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.divider {
+  height: 3px;
+  width: 60px;
+  background-color: var(--accent-green);
+  margin: 16px 0 32px;
+  border-radius: 2px;
+}
+
+/* Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+@media (max-width: 767px) {
+  h1 { font-size: 36px; }
+  h2 { font-size: 28px; }
+  h3 { font-size: 22px; }
+  section { padding: 60px 0; }
+  .container { padding: 0 20px; }
+}
