@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 
 const PageHero = ({ title, subtitle, breadcrumb }) => {
@@ -6,7 +6,7 @@ const PageHero = ({ title, subtitle, breadcrumb }) => {
     <section className="page-hero">
       <div className="container">
         <div className="breadcrumb">
-          Home <ChevronRight size={14} /> {breadcrumb}
+          <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>Home</Link> <ChevronRight size={14} /> {breadcrumb}
         </div>
         <h1>{title}</h1>
         {subtitle && <p className="subtitle">{subtitle}</p>}

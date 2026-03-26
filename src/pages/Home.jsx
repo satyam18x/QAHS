@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ChevronRight, Phone, CheckCircle, Award, Users, Globe } from 'lucide-react';
 
 // Using generated image paths
@@ -56,8 +57,8 @@ const Home = () => {
               viewport={{ once: true }}
               className="hero-ctas"
             >
-              <a href="/contact" className="btn btn-ghost btn-lg">Get Started <ChevronRight size={20} /></a>
-              <a href="/services" className="hero-text-link">Our Services</a>
+              <Link to="/contact" className="btn btn-ghost btn-lg">Get Started <ChevronRight size={20} /></Link>
+              <Link to="/services" className="hero-text-link">Our Services</Link>
             </motion.div>
 
             {/* Floating Contact Card */}
@@ -117,7 +118,7 @@ const Home = () => {
                 <span>End-to-end support from planning to certification</span>
               </div>
             </div>
-            <a href="/about" className="btn btn-outline">Learn About Us <ChevronRight size={18} /></a>
+            <Link to="/about" className="btn btn-outline">Learn About Us <ChevronRight size={18} /></Link>
           </div>
           <div className="about-stats-grid">
             <div className="stat-box card">
@@ -174,7 +175,7 @@ const Home = () => {
                 </div>
                 <h3>{service.title}</h3>
                 <p>{service.desc}</p>
-                <a href="/services" className="learn-more">Learn More <ChevronRight size={14} /></a>
+                <Link to="/services" className="learn-more">Learn More <ChevronRight size={14} /></Link>
               </motion.div>
             ))}
           </div>
@@ -265,7 +266,7 @@ const Home = () => {
             <h3>Have questions? We're just a call away.</h3>
             <p>+91 9301444414  |  quickhospital01@gmail.com</p>
           </div>
-          <a href="/contact" className="btn btn-white">Get Free Consultation</a>
+          <Link to="/contact" className="btn btn-white">Get Free Consultation</Link>
         </div>
       </div>
 

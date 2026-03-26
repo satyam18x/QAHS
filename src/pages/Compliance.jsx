@@ -43,7 +43,7 @@ const Compliance = () => {
                  </div>
               </div>
               <div className="text-center mt-40">
-                 <a href="/contact" className="btn btn-alert">Get Compliance Audit <ChevronRight size={18} /></a>
+                 <Link to="/contact" className="btn btn-alert">Get Compliance Audit <ChevronRight size={18} /></Link>
               </div>
            </div>
         </div>
@@ -86,7 +86,7 @@ const Compliance = () => {
             <p className="lead text-white max-w-600 mx-auto mb-30">
                Let QHAS track and manage all your regulatory renewal dates, ensuring you are always ahead of deadlines — not scrambling to meet them.
             </p>
-            <a href="/contact" className="btn btn-ghost btn-lg">Start Compliance Management <ChevronRight size={18} /></a>
+            <Link to="/contact" className="btn btn-ghost btn-lg">Start Compliance Management <ChevronRight size={18} /></Link>
          </div>
       </section>
 

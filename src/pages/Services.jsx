@@ -79,7 +79,7 @@ const Services = () => {
               <li><Check size={18} /> Government registration and pre-opening compliance</li>
               <li><Check size={18} /> Staff documentation and credential verification</li>
             </ul>
-            <a href="/hospital-setup" className="btn btn-primary mt-40">Start Your Hospital Journey <ChevronRight size={18} /></a>
+            <Link to="/hospital-setup" className="btn btn-primary mt-40">Start Your Hospital Journey <ChevronRight size={18} /></Link>
           </div>
         </section>
 
@@ -200,7 +200,7 @@ const Services = () => {
               <span className="pill-badge style-2">Kenya</span>
               <span className="pill-badge style-2">Middle East</span>
             </div>
-            <a href="/international" className="btn btn-outline mt-40">View International Services</a>
+            <Link to="/international" className="btn btn-outline mt-40">View International Services</Link>
           </div>
         </section>
 

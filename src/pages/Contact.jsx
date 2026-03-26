@@ -4,8 +4,40 @@ import { MapPin, Phone, Mail, Clock, Send, ChevronDown, ChevronUp } from 'lucide
 
 const Contact = () => {
    const [openFaq, setOpenFaq] = useState(0);
+   const [formData, setFormData] = useState({
+      name: '',
+      phone: '',
+      email: '',
+      service: '',
+      message: ''
+   });
+
+   const handleChange = (e) => {
+      const { name, id, value } = e.target;
+      // Handle both select (no name) and input (with name/id)
+      const fieldName = name || id || (e.target.tagName === 'SELECT' ? 'service' : '');
+      if (fieldName) {
+         setFormData(prev => ({ ...prev, [fieldName]: value }));
+      }
+   };
+
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      
+      // Construct message for WhatsApp
+      const text = `*New Website Inquiry*\n\n` +
+                   `*Name:* ${formData.name}\n` +
+                   `*Phone:* ${formData.phone}\n` +
+                   `*Email:* ${formData.email || 'Not provided'}\n` +
+                   `*Inquiry:* ${formData.service || 'General Inquiry'}\n\n` +
+                   `*Message:*\n${formData.message}`;
+      
+      const whatsappUrl = `https://wa.me/919301444414?text=${encodeURIComponent(text)}`;
+      window.open(whatsappUrl, '_blank');
+   };
 
    const faqs = [
+// ... existing faqs ...
       { q: "What is the process to get a new hospital license?", a: "The process involves preparing a DPR, securing building plans, obtaining Fire and Pollution NOCs, and applying with the CMHO/Health Department. QHAS manages this entire lifecycle for you." },
       { q: "Do you provide services outside Madhya Pradesh?", a: "Yes, while we are headquartered in Jabalpur, MP, we handle hospital setups, NABH, and international patient coordination for clients across India." },
       { q: "How much time does NABH accreditation take?", a: "Entry-level NABH typically takes 3-6 months, while full accreditation can take 9-12 months depending on the hospital's current infrastructure and readiness." },
@@ -77,35 +109,67 @@ const Contact = () => {
                <div className="contact-form-wrapper">
                   <div className="card form-card">
                      <h3>Send Us a Message</h3>
-                     <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+                     <form className="contact-form" onSubmit={handleSubmit}>
                         <div className="form-group">
                            <label>Full Name *</label>
-                           <input type="text" placeholder="Dr. John Doe" required />
+                           <input 
+                              type="text" 
+                              name="name"
+                              placeholder="Dr. John Doe" 
+                              required 
+                              value={formData.name}
+                              onChange={handleChange}
+                           />
                         </div>
                         <div className="form-row">
                            <div className="form-group">
                               <label>Phone Number *</label>
-                              <input type="tel" placeholder="+91 98765 43210" required />
+                              <input 
+                                 type="tel" 
+                                 name="phone"
+                                 placeholder="+91 98765 43210" 
+                                 required 
+                                 value={formData.phone}
+                                 onChange={handleChange}
+                              />
                            </div>
                            <div className="form-group">
                               <label>Email Address</label>
-                              <input type="email" placeholder="john@hospital.com" />
+                              <input 
+                                 type="email" 
+                                 name="email"
+                                 placeholder="john@hospital.com" 
+                                 value={formData.email}
+                                 onChange={handleChange}
+                              />
                            </div>
                         </div>
                         <div className="form-group">
                            <label>Inquiry Type *</label>
-                           <select required>
+                           <select 
+                              required 
+                              name="service"
+                              value={formData.service}
+                              onChange={handleChange}
+                           >
                               <option value="">Select a service</option>
-                              <option value="setup">Hospital Setup</option>
-                              <option value="licensing">Licensing & Compliance</option>
-                              <option value="nabh">NABH Accreditation</option>
-                              <option value="international">International Patients</option>
-                              <option value="other">Other Query</option>
+                              <option value="Hospital Setup">Hospital Setup</option>
+                              <option value="Licensing & Compliance">Licensing & Compliance</option>
+                              <option value="NABH Accreditation">NABH Accreditation</option>
+                              <option value="International Patients">International Patients</option>
+                              <option value="Other Query">Other Query</option>
                            </select>
                         </div>
                         <div className="form-group">
                            <label>Message *</label>
-                           <textarea rows="4" placeholder="Tell us about your requirements..." required></textarea>
+                           <textarea 
+                              rows="4" 
+                              name="message"
+                              placeholder="Tell us about your requirements..." 
+                              required 
+                              value={formData.message}
+                              onChange={handleChange}
+                           ></textarea>
                         </div>
                         <button type="submit" className="btn btn-primary w-full">
                            Send Request <Send size={18} />
