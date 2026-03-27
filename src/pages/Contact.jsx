@@ -4,8 +4,40 @@ import { MapPin, Phone, Mail, Clock, Send, ChevronDown, ChevronUp } from 'lucide
 
 const Contact = () => {
    const [openFaq, setOpenFaq] = useState(0);
+   const [formData, setFormData] = useState({
+      name: '',
+      phone: '',
+      email: '',
+      service: '',
+      message: ''
+   });
+
+   const handleChange = (e) => {
+      const { name, id, value } = e.target;
+      // Handle both select (no name) and input (with name/id)
+      const fieldName = name || id || (e.target.tagName === 'SELECT' ? 'service' : '');
+      if (fieldName) {
+         setFormData(prev => ({ ...prev, [fieldName]: value }));
+      }
+   };
+
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      
+      // Construct message for WhatsApp
+      const text = `*New Website Inquiry*\n\n` +
+                   `*Name:* ${formData.name}\n` +
+                   `*Phone:* ${formData.phone}\n` +
+                   `*Email:* ${formData.email || 'Not provided'}\n` +
+                   `*Inquiry:* ${formData.service || 'General Inquiry'}\n\n` +
+                   `*Message:*\n${formData.message}`;
+      
+      const whatsappUrl = `https://wa.me/919301444414?text=${encodeURIComponent(text)}`;
+      window.open(whatsappUrl, '_blank');
+   };
 
    const faqs = [
+// ... existing faqs ...
       { q: "What is the process to get a new hospital license?", a: "The process involves preparing a DPR, securing building plans, obtaining Fire and Pollution NOCs, and applying with the CMHO/Health Department. QHAS manages this entire lifecycle for you." },
       { q: "Do you provide services outside Madhya Pradesh?", a: "Yes, while we are headquartered in Jabalpur, MP, we handle hospital setups, NABH, and international patient coordination for clients across India." },
       { q: "How much time does NABH accreditation take?", a: "Entry-level NABH typically takes 3-6 months, while full accreditation can take 9-12 months depending on the hospital's current infrastructure and readiness." },
@@ -77,35 +109,67 @@ const Contact = () => {
                <div className="contact-form-wrapper">
                   <div className="card form-card">
                      <h3>Send Us a Message</h3>
-                     <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+                     <form className="contact-form" onSubmit={handleSubmit}>
                         <div className="form-group">
                            <label>Full Name *</label>
-                           <input type="text" placeholder="Dr. John Doe" required />
+                           <input 
+                              type="text" 
+                              name="name"
+                              placeholder="Dr. John Doe" 
+                              required 
+                              value={formData.name}
+                              onChange={handleChange}
+                           />
                         </div>
                         <div className="form-row">
                            <div className="form-group">
                               <label>Phone Number *</label>
-                              <input type="tel" placeholder="+91 98765 43210" required />
+                              <input 
+                                 type="tel" 
+                                 name="phone"
+                                 placeholder="+91 98765 43210" 
+                                 required 
+                                 value={formData.phone}
+                                 onChange={handleChange}
+                              />
                            </div>
                            <div className="form-group">
                               <label>Email Address</label>
-                              <input type="email" placeholder="john@hospital.com" />
+                              <input 
+                                 type="email" 
+                                 name="email"
+                                 placeholder="john@hospital.com" 
+                                 value={formData.email}
+                                 onChange={handleChange}
+                              />
                            </div>
                         </div>
                         <div className="form-group">
                            <label>Inquiry Type *</label>
-                           <select required>
+                           <select 
+                              required 
+                              name="service"
+                              value={formData.service}
+                              onChange={handleChange}
+                           >
                               <option value="">Select a service</option>
-                              <option value="setup">Hospital Setup</option>
-                              <option value="licensing">Licensing & Compliance</option>
-                              <option value="nabh">NABH Accreditation</option>
-                              <option value="international">International Patients</option>
-                              <option value="other">Other Query</option>
+                              <option value="Hospital Setup">Hospital Setup</option>
+                              <option value="Licensing & Compliance">Licensing & Compliance</option>
+                              <option value="NABH Accreditation">NABH Accreditation</option>
+                              <option value="International Patients">International Patients</option>
+                              <option value="Other Query">Other Query</option>
                            </select>
                         </div>
                         <div className="form-group">
                            <label>Message *</label>
-                           <textarea rows="4" placeholder="Tell us about your requirements..." required></textarea>
+                           <textarea 
+                              rows="4" 
+                              name="message"
+                              placeholder="Tell us about your requirements..." 
+                              required 
+                              value={formData.message}
+                              onChange={handleChange}
+                           ></textarea>
                         </div>
                         <button type="submit" className="btn btn-primary w-full">
                            Send Request <Send size={18} />
@@ -124,6 +188,9 @@ const Contact = () => {
          <section className="map-section">
             <div className="map-placeholder">
                <div className="map-overlay">
+                  <div className="map-icon-wrapper">
+                     <MapPin size={32} />
+                  </div>
                   <h3>QHAS Head Office</h3>
                   <p>Jabalpur, Madhya Pradesh</p>
                   <a
@@ -169,8 +236,8 @@ const Contact = () => {
 
          <style dangerouslySetInnerHTML={{
             __html: `
-        .contact-section { padding: 100px 0; background: white; }
-        .bg-light { background: var(--bg-light); padding: 100px 0; }
+        .contact-section { padding: 70px 0; background: white; }
+        .bg-light { background: var(--bg-light); padding: 70px 0; }
         
         .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; }
         
@@ -184,7 +251,7 @@ const Contact = () => {
         .text-center { text-align: center; }
         .font-sm { font-size: 13px; }
         .text-muted { color: var(--text-muted); }
-        .centered { text-align: center; margin-bottom: 60px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .centered { text-align: center; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
         .info-cards { display: flex; flex-direction: column; gap: 24px; }
         .info-card { display: flex; align-items: center; gap: 20px; padding-bottom: 24px; border-bottom: 1px dashed var(--border); }
@@ -218,19 +285,33 @@ const Contact = () => {
         }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary); }
 
-        .map-section { height: 400px; width: 100%; position: relative; }
+        .map-section { height: 450px; width: 100%; position: relative; padding: 20px 0; background: var(--bg-light); }
         .map-placeholder {
-           width: 100%; height: 100%; background: #E5E9EC;
-           background-image: radial-gradient(#CED4DA 2px, transparent 2px);
-           background-size: 30px 30px;
+           width: 100%; height: 100%; 
+           background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+           background-image: radial-gradient(var(--primary) 1px, transparent 1px);
+           background-size: 40px 40px;
            display: flex; align-items: center; justify-content: center;
+           border-radius: 24px;
+           overflow: hidden;
+           box-shadow: inset 0 0 100px rgba(0,0,0,0.05);
         }
         .map-overlay {
-           background: white; padding: 24px 32px; border-radius: 12px;
-           box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center;
+           background: white; padding: 40px; border-radius: 20px;
+           box-shadow: 0 30px 60px rgba(26,126,181,0.15); text-align: center;
+           max-width: 400px;
+           border-top: 5px solid var(--primary);
+           transition: transform 0.3s;
         }
-        .map-overlay h3 { margin-bottom: 8px; color: var(--primary); }
-        .map-overlay p { color: var(--text-muted); font-size: 15px; }
+        .map-overlay:hover { transform: translateY(-5px); }
+        .map-overlay h3 { margin-bottom: 12px; color: var(--primary); font-size: 24px; }
+        .map-icon-wrapper {
+           width: 64px; height: 64px; background: rgba(26,126,181,0.1);
+           color: var(--primary); border-radius: 50%;
+           display: flex; align-items: center; justify-content: center;
+           margin: 0 auto 20px;
+        }
+        .map-overlay p { color: var(--text-muted); font-size: 16px; margin-bottom: 20px; }
 
         .faq-accordion { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
         .faq-item { overflow: hidden; transition: all 0.3s; border: 1px solid var(--border); }
@@ -246,8 +327,11 @@ const Contact = () => {
         .faq-inner { padding: 0 24px 24px; font-size: 16px; color: var(--text-muted); line-height: 1.6; }
 
         @media (max-width: 1024px) {
-           .contact-grid { grid-template-columns: 1fr; gap: 60px; }
+           .contact-section, .bg-light { padding: 40px 0; }
+           .contact-grid { grid-template-columns: 1fr; gap: 40px; }
            .form-row { grid-template-columns: 1fr; }
+           .map-section { height: auto; padding: 0 20px 40px; }
+           .map-overlay { padding: 30px 20px; }
         }
       ` }} />
       </div>

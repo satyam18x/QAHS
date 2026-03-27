@@ -43,7 +43,7 @@ const Compliance = () => {
                  </div>
               </div>
               <div className="text-center mt-40">
-                 <a href="/contact" className="btn btn-alert">Get Compliance Audit <ChevronRight size={18} /></a>
+                 <Link to="/contact" className="btn btn-alert">Get Compliance Audit <ChevronRight size={18} /></Link>
               </div>
            </div>
         </div>
@@ -86,13 +86,13 @@ const Compliance = () => {
             <p className="lead text-white max-w-600 mx-auto mb-30">
                Let QHAS track and manage all your regulatory renewal dates, ensuring you are always ahead of deadlines — not scrambling to meet them.
             </p>
-            <a href="/contact" className="btn btn-ghost btn-lg">Start Compliance Management <ChevronRight size={18} /></a>
+            <Link to="/contact" className="btn btn-ghost btn-lg">Start Compliance Management <ChevronRight size={18} /></Link>
          </div>
       </section>
 
       <style dangerouslySetInnerHTML={{ __html: `
-        .bg-white { background: white; padding: 100px 0; }
-        .bg-light { background: var(--bg-light); padding: 100px 0; }
+        .bg-white { background: white; padding: 70px 0; }
+        .bg-light { background: var(--bg-light); padding: 70px 0; }
         .mt-30 { margin-top: 30px; }
         .mt-40 { margin-top: 40px; }
         .mb-20 { margin-bottom: 20px; }
@@ -135,7 +135,7 @@ const Compliance = () => {
         .c-service-card h4 { font-size: 18px; margin-bottom: 12px; }
         .c-service-card p { font-size: 15px; color: var(--text-muted); margin: 0; line-height: 1.5; }
 
-        .calendar-cta { background: var(--hero-gradient); padding: 100px 0; }
+        .calendar-cta { background: var(--hero-gradient); padding: 70px 0; }
         .calendar-cta h3 { font-size: 36px; color: white; }
 
         @media (max-width: 1024px) {
@@ -143,6 +143,7 @@ const Compliance = () => {
            .attention-box { padding: 40px 20px; }
         }
         @media (max-width: 767px) {
+           .bg-white, .bg-light, .calendar-cta { padding: 40px 0; }
            .services-grid-3x3 { grid-template-columns: 1fr; }
            .risk-grid { grid-template-columns: 1fr; }
            .a-header h2 { font-size: 24px; text-align: left;}

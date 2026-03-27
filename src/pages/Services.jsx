@@ -79,7 +79,7 @@ const Services = () => {
               <li><Check size={18} /> Government registration and pre-opening compliance</li>
               <li><Check size={18} /> Staff documentation and credential verification</li>
             </ul>
-            <a href="/hospital-setup" className="btn btn-primary mt-40">Start Your Hospital Journey <ChevronRight size={18} /></a>
+            <Link to="/hospital-setup" className="btn btn-primary mt-40">Start Your Hospital Journey <ChevronRight size={18} /></Link>
           </div>
         </section>
 
@@ -200,7 +200,7 @@ const Services = () => {
               <span className="pill-badge style-2">Kenya</span>
               <span className="pill-badge style-2">Middle East</span>
             </div>
-            <a href="/international" className="btn btn-outline mt-40">View International Services</a>
+            <Link to="/international" className="btn btn-outline mt-40">View International Services</Link>
           </div>
         </section>
 
@@ -240,7 +240,7 @@ const Services = () => {
 
         .mobile-tabs { display: none; }
 
-        .service-block { padding: 120px 0; }
+        .service-block { padding: 70px 0; }
         .service-block.bg-light { background: var(--bg-light); }
         .service-block.bg-white { background: white; }
 
@@ -336,7 +336,7 @@ const Services = () => {
             align-items: center;
             justify-content: center;
           }
-          .service-block { padding: 80px 0; }
+          .service-block { padding: 40px 0; }
           .s-content h3 { font-size: 32px; }
           .lead { font-size: 18px; }
           .equipment-grid { grid-template-columns: 1fr; }

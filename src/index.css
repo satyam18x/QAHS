@@ -26,7 +26,7 @@
   --font-accent:   'DM Mono', monospace;
 
   /* Spacing & Layout */
-  --section-padding:    100px 0;
+  --section-padding:    70px 0;
   --container-max:      1180px;
   --container-padding:  0 24px;
   --card-radius:        16px;
@@ -188,7 +188,7 @@ section {
   h1 { font-size: 36px; }
   h2 { font-size: 28px; }
   h3 { font-size: 22px; }
-  section { padding: 60px 0; }
+  section { padding: 40px 0; }
   .container { padding: 0 20px; }
 }
 
@@ -198,7 +198,7 @@ section {
   .mobile-back-btn { 
     display: block; 
     margin-top: 20px; 
-    margin-bottom: -40px;
+    margin-bottom: 20px;
     position: relative;
     z-index: 10;
   }

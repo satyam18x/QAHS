@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ChevronRight, Phone, CheckCircle, Award, Users, Globe } from 'lucide-react';
 
 // Using generated image paths
@@ -56,8 +57,8 @@ const Home = () => {
               viewport={{ once: true }}
               className="hero-ctas"
             >
-              <a href="/contact" className="btn btn-ghost btn-lg">Get Started <ChevronRight size={20} /></a>
-              <a href="/services" className="hero-text-link">Our Services</a>
+              <Link to="/contact" className="btn btn-ghost btn-lg">Get Started <ChevronRight size={20} /></Link>
+              <Link to="/services" className="hero-text-link">Our Services</Link>
             </motion.div>
 
             {/* Floating Contact Card */}
@@ -86,11 +87,25 @@ const Home = () => {
       {/* C2. Trust Indicator Bar */}
       <div className="trust-bar">
         <div className="container trust-flex">
-          <div className="trust-item">✦ NABH Accreditation Experts</div>
-          <div className="trust-item">✦ Govt. Registered Firm</div>
-          <div className="trust-item">✦ 100+ Hospitals Served</div>
-          <div className="trust-item">✦ Jabalpur HQ | PAN India</div>
-          <div className="trust-item">✦ Compliance Specialists</div>
+          {[
+            "✦ NABH Accreditation Experts",
+            "✦ Govt. Registered Firm",
+            "✦ 100+ Hospitals Served",
+            "✦ Jabalpur HQ | PAN India",
+            "✦ Compliance Specialists"
+          ].map((item, idx) => (
+            <div key={`trust-1-${idx}`} className="trust-item">{item}</div>
+          ))}
+          {/* Duplicate items for seamless loop on mobile marquee */}
+          {[
+            "✦ NABH Accreditation Experts",
+            "✦ Govt. Registered Firm",
+            "✦ 100+ Hospitals Served",
+            "✦ Jabalpur HQ | PAN India",
+            "✦ Compliance Specialists"
+          ].map((item, idx) => (
+            <div key={`trust-2-${idx}`} className="trust-item mobile-only">{item}</div>
+          ))}
         </div>
       </div>
 
@@ -117,7 +132,7 @@ const Home = () => {
                 <span>End-to-end support from planning to certification</span>
               </div>
             </div>
-            <a href="/about" className="btn btn-outline">Learn About Us <ChevronRight size={18} /></a>
+            <Link to="/about" className="btn btn-outline">Learn About Us <ChevronRight size={18} /></Link>
           </div>
           <div className="about-stats-grid">
             <div className="stat-box card">
@@ -174,7 +189,7 @@ const Home = () => {
                 </div>
                 <h3>{service.title}</h3>
                 <p>{service.desc}</p>
-                <a href="/services" className="learn-more">Learn More <ChevronRight size={14} /></a>
+                <Link to="/services" className="learn-more">Learn More <ChevronRight size={14} /></Link>
               </motion.div>
             ))}
           </div>
@@ -265,7 +280,7 @@ const Home = () => {
             <h3>Have questions? We're just a call away.</h3>
             <p>+91 9301444414  |  quickhospital01@gmail.com</p>
           </div>
-          <a href="/contact" className="btn btn-white">Get Free Consultation</a>
+          <Link to="/contact" className="btn btn-white">Get Free Consultation</Link>
         </div>
       </div>
 
@@ -290,7 +305,7 @@ const Home = () => {
           flex: 1;
         }
         .hero-left {
-          margin-left: -6vw;
+          margin-left: -8.5vw;
           position: relative;
           z-index: 5;
         }
@@ -384,16 +399,76 @@ const Home = () => {
         .trust-bar {
           background: white;
           border-bottom: 1px solid var(--border);
-          padding: 20px 0;
+          padding: 15px 0;
+          overflow: hidden;
+          position: relative;
         }
+
         .trust-flex {
           display: flex;
+          align-items: center;
           justify-content: space-between;
           color: var(--text-muted);
           font-weight: 500;
           font-size: 14px;
+          gap: 30px;
         }
 
+        .trust-item {
+          white-space: nowrap;
+          flex-shrink: 0;
+        }
+
+        .mobile-only { display: none; }
+
+        @media (max-width: 900px) {
+          .mobile-only { display: block; }
+          
+          .trust-bar {
+            padding: 12px 0;
+          }
+
+          .trust-flex {
+            justify-content: flex-start;
+            gap: 50px;
+            width: fit-content;
+            padding: 0;
+            animation: trustMarquee 25s linear infinite;
+            max-width: none;
+            margin: 0; /* Override container margin for marquee */
+          }
+
+          .trust-bar:hover .trust-flex {
+            animation-play-state: paused;
+          }
+
+          /* Fade mask for scrolling effect */
+          .trust-bar::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 50px;
+            background: linear-gradient(to right, white, transparent);
+            z-index: 2;
+            pointer-events: none;
+          }
+          .trust-bar::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0;
+            width: 50px;
+            background: linear-gradient(to left, white, transparent);
+            z-index: 2;
+            pointer-events: none;
+          }
+        }
+
+        @keyframes trustMarquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
+        .about-preview { background-color: var(--white); overflow: hidden; padding-bottom: 20px; }
         .grid-2 { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center; }
         .about-text p { margin-bottom: 20px; font-size: 17px; color: var(--text-muted); }
         .highlight-list { margin: 30px 0 40px; }
@@ -417,8 +492,8 @@ const Home = () => {
         .stat-box.accent strong { color: var(--accent-green); }
         .stat-box span { font-size: 14px; color: var(--text-muted); margin-top: 8px; font-weight: 500; }
 
-        .services-section { background: var(--bg-light); }
-        .centered { text-align: center; margin-bottom: 60px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .services-section { background: var(--bg-light); padding-top: 20px; }
+        .centered { text-align: center; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
         .services-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -471,7 +546,7 @@ const Home = () => {
           display: flex;
           justify-content: space-between;
           position: relative;
-          padding-top: 40px;
+          padding-top: 20px;
         }
         .timeline::after {
           content: '';
@@ -510,7 +585,7 @@ const Home = () => {
         .timeline-item h4 { font-size: 16px; margin-bottom: 8px; }
         .timeline-item p { font-size: 13px; opacity: 0.75; line-height: 1.4; }
 
-        .achievements { background: white; padding: 60px 0; }
+        .achievements { background: white; padding: 40px 0; }
         .achievement-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
@@ -526,29 +601,95 @@ const Home = () => {
 
 
 
-        .footer-strip { background: var(--accent-green); color: white; padding: 40px 0; }
+        .footer-strip { background: var(--accent-green); color: white; padding: 30px 0; }
         .strip-flex { display: flex; justify-content: space-between; align-items: center; }
         .strip-text h3 { margin-bottom: 4px; }
         .strip-text p { opacity: 0.85; }
         .btn-white { background: white; color: var(--accent-green); }
 
         @media (max-width: 1024px) {
-          .hero-content { grid-template-columns: 1fr; text-align: center; padding-top: 40px; }
+          .hero {
+            height: auto;
+            min-height: 550px;
+            padding: 80px 0 60px;
+            overflow: visible;
+            background: linear-gradient(rgba(10, 54, 82, 0.85), rgba(10, 54, 82, 0.85)), url('/images/hero_doctor_admin.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+          }
+          .hero-content { 
+            grid-template-columns: 1fr; 
+            text-align: center; 
+            gap: 0;
+            width: 100%;
+          }
+          .hero-left { 
+            margin-left: 0; 
+            padding: 0 20px;
+            width: 100%;
+          }
           .hero-badge { margin: 0 auto 24px; }
-          .hero h1 { font-size: 48px; }
-          .hero-sub { margin: 0 auto 20px; }
-          .hero-ctas { justify-content: center; }
+          .hero h1 { 
+            font-size: 40px; 
+            line-height: 1.2;
+          }
+          .hero-sub { 
+            margin: 0 auto 20px; 
+            font-size: 18px;
+            max-width: 100%;
+          }
+          .hero-ctas { 
+            justify-content: center; 
+            flex-wrap: wrap;
+            gap: 15px;
+          }
+          .hero-right {
+            display: none;
+          }
+          .hero-float-card {
+            transform: none;
+            margin: 40px auto 0;
+            background: rgba(255, 255, 255, 0.95);
+          }
+
           .grid-2 { grid-template-columns: 1fr; gap: 60px; }
+          .about-stats-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
+          .about-values-grid { grid-template-columns: 1fr; gap: 15px; }
           .services-grid { grid-template-columns: 1fr 1fr; }
           .achievement-grid { grid-template-columns: 1fr 1fr; }
-          .timeline { flex-direction: column; gap: 40px; }
+
+          .centered { margin-bottom: 30px; }
+          .why-text h2 { margin-bottom: 40px; }
+          .timeline { flex-direction: column; gap: 40px; padding-top: 20px; }
           .timeline::after { display: none; }
           .cta-flex { flex-direction: column; text-align: center; gap: 40px; }
           .footer-strip .strip-flex { flex-direction: column; text-align: center; gap: 30px; }
         }
         @media (max-width: 767px) {
+          .hero {
+            padding: 60px 0 40px;
+            min-height: 500px;
+          }
+          .hero h1 {
+            font-size: 32px;
+          }
+          .hero-sub {
+            font-size: 16px;
+          }
+          .hero-float-card {
+            padding: 8px 12px;
+            font-size: 14px;
+          }
           .services-grid { grid-template-columns: 1fr; }
           .achievement-grid { grid-template-columns: 1fr; }
+
+          .achievements { padding: 40px 0; }
+          .stat-card { padding: 20px; border-right: none; border-bottom: 1px solid var(--border); }
+          .stat-card:last-child { border-bottom: none; }
+
+          .footer-strip { padding: 30px 0; }
         }
       ` }} />
     </div>

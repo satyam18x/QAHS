@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 
 const PageHero = ({ title, subtitle, breadcrumb }) => {
@@ -6,7 +6,7 @@ const PageHero = ({ title, subtitle, breadcrumb }) => {
     <section className="page-hero">
       <div className="container">
         <div className="breadcrumb">
-          Home <ChevronRight size={14} /> {breadcrumb}
+          <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>Home</Link> <ChevronRight size={14} /> {breadcrumb}
         </div>
         <h1>{title}</h1>
         {subtitle && <p className="subtitle">{subtitle}</p>}
@@ -43,6 +43,12 @@ const PageHero = ({ title, subtitle, breadcrumb }) => {
           letter-spacing: 20px;
           pointer-events: none;
           text-transform: uppercase;
+        }
+        @media (max-width: 768px) {
+          .page-hero { padding: 30px 0; }
+          .page-hero h1 { font-size: 38px; }
+          .subtitle { font-size: 18px; }
+          .hero-watermark { font-size: 80px; }
         }
       ` }} />
     </section>

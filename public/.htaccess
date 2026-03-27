@@ -1,0 +1,23 @@
+AddType application/javascript .js
+AddType application/javascript .mjs
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Force HTTPS + remove www
+  RewriteCond %{HTTPS} off [OR]
+  RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+  RewriteRule ^(.*)$ https://%1/$1 [L,R=301]
+
+  RewriteBase /
+
+  # Allow real files
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # React routing
+  # Don't rewrite for common static files, even if missing
+  RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|gif|svg|ico|woff|woff2|ttf|eot)$ [NC]
+  RewriteRule ^ index.html [L]
+</IfModule>

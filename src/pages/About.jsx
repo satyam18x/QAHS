@@ -103,6 +103,7 @@ const About = () => {
         .vision .mv-icon { color: var(--accent-green); }
         .mv-card h3 { font-size: 28px; margin-bottom: 16px; }
 
+        .centered { text-align: center; margin: 0 auto 50px; max-width: 700px; }
         .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
         .value-card { text-align: center; }
         .v-icon {
@@ -119,7 +120,8 @@ const About = () => {
         
         @media (max-width: 1024px) {
           .grid-2 { grid-template-columns: 1fr; gap: 40px; }
-          .values-grid { grid-template-columns: 1fr 1fr; }
+          .section-header.centered { margin-bottom: 40px; }
+          .values-grid { grid-template-columns: 1fr; }
         }
       ` }} />
     </div>

@@ -39,13 +39,13 @@ const Navbar = () => {
         <div className="container nav-content">
           <Link to="/" className="logo">
             <img src="/images/qhas-logo.png" alt="QHAS Logo" className="logo-img" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
-            <span className="logo-text" style={{display: 'none'}}><img src="/images/qhas-logo.png" className="logo-img" /></span>
+            <span className="logo-text" style={{ display: 'none' }}><img src="/images/qhas-logo.png" className="logo-img" /></span>
           </Link>
 
           <div className="nav-links">
             <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
             <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>About Us</Link>
-            
+
             <div className="dropdown">
               <Link to="/services" className={`dropdown-trigger ${location.pathname.startsWith('/services') ? 'active' : ''}`}>
                 Services <ChevronDown size={16} />
@@ -53,21 +53,21 @@ const Navbar = () => {
               <div className="mega-menu">
                 <div className="mega-menu-grid">
                   <Link to="/hospital-setup">
-                    
+
                     <div>
                       <strong>Hospital Setup</strong>
                       <p>Complete consultancy from planning to launch.</p>
                     </div>
                   </Link>
                   <Link to="/compliance">
-                   
+
                     <div>
                       <strong>Licensing & Compliance</strong>
                       <p>Govt. registrations and renewals.</p>
                     </div>
                   </Link>
                   <Link to="/international">
-                    
+
                     <div>
                       <strong>International Services</strong>
                       <p>Global patient coordination.</p>
@@ -101,7 +101,8 @@ const Navbar = () => {
         </div>
       </nav>
 
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .top-bar {
           background: var(--primary-dark);
           color: rgba(255,255,255,0.85);
@@ -249,6 +250,16 @@ const Navbar = () => {
           padding: 16px 0;
           border-bottom: 1px solid var(--bg-light);
           font-weight: 600;
+        }
+        .mobile-cta {
+          padding: 24px 0 0;
+          display: flex;
+          justify-content: center;
+        }
+        .mobile-cta .btn {
+          width: 100%;
+          text-align: center;
+          padding: 14px 0;
         }
 
         @media (max-width: 1024px) {
